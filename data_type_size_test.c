@@ -36,4 +36,6 @@ int main() {
 	printf("Size of int32_t: %zu\n", sizeof(int32_t));
 	printf("Size of uint64_t: %zu\n", sizeof(uint64_t));
 	printf("Size of int64_t: %zu\n", sizeof(int64_t));
+
+	return 0;
 }
