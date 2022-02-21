@@ -40,7 +40,7 @@ typedef struct prime_list_node {
 } prime_list;
 ```
 
-Each item stores a prime number and a pointer to the next list item. This pointer, in the last item, has value `NULL`.
+This is a recursive definition, which is allowed by C. Each item stores a prime number and a pointer to the next list item. This pointer, in the last item, has value `NULL`.
 
 ```
 prime_list *prime_head = NULL;
