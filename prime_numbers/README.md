@@ -25,12 +25,29 @@ This would imply to keep, and continuously update, a list of prime numbers durin
 
 As regards complexity, in the previous prime numbers programs, the prime numbers obtained are printed in the `stdout`, then forgotten. Instead, here, all the discovered prime numbers should be maintained into memory during the whole execution (and writing, and then reading them, to/from a file for each prime number test would imply a longer time waste). This adds complexity (as regards code and as regards system resources; however, the dimensions of the list, in bytes of memory, are tiny, few MB even with large `N`), but such an approach is theoretically more efficient, because it aims at reducing the number of unnecessary operations.
 
-Here, a list of items is used to store the prime numbers. Two pointers are kept: one to the first element of the list, `prime_head`, and one to the last element of the list, `prime_tail`. In the beginning, both are initialized to `NULL`; once a list is created, `prime_head` is updated and should be never modified again; `prime_tail` is instead modified each time a new item is added to the list (and it is always added at the end of the list).
+The number `N` provided by the user is stored in the variable
+
+```
+uint64_t limit;
+```
+
+The linked list of items, used to store the prime numbers, is defined as:
+
+```
+typedef struct prime_list_node {
+        uint64_t prime;
+        struct prime_list_node *next;
+} prime_list;
+```
+
+Each item stores a prime number and a pointer to the next list item. This pointer, in the last item, has value `NULL`.
 
 ```
 prime_list *prime_head = NULL;
 prime_list *prime_tail = NULL;
 ```
+
+Outside the list, two pointers are kept as global variables: one to the first element of the list, `prime_head`, and one to the last element of the list, `prime_tail`. In the beginning, both are initialized to `NULL`; once a list is created, `prime_head` is updated and should be never modified again; `prime_tail` is instead modified each time a new item is added to the list (and it is always added at the end of the list).
 
 The elements of this prime numbers list are, in other words, dynamically created: a new item is added each time a new prime number is discovered. For dynamically allocated data, in C it is necessary to use `malloc()`, because otherwise the compiler can not determine the amount of space to be reserved for the data structures ([Reference 1][dynamic_allocation_1]) ([Reference 2][dynamic_allocation_2]).
 
@@ -73,9 +90,9 @@ Update the pointer to the tail of the list. Using `next_prime->next` here, inste
 
     limit = (uint64_t)strtoul(argv[1], NULL, 10);
 
-There are no `strtouint64_t' functions available, apparently. However, `usigned long` in the current `x86_64` system is 8 bytes, exactly as `uint64_t`, which is unsigned, too. So, this convertion should not arise ambiguities, because it is made between equivalent data types.
+There are no `strtouint64_t` functions available, apparently. However, `usigned long` in the current `x86_64` system is 8 bytes, exactly as `uint64_t`, which is unsigned, too. So, this convertion should not arise ambiguities, because it is made between equivalent data types.
 
-In the source file, several commented lines ending with `DEBUG` are included: they may be useful to inspect the program, but beware that, if they are uncommented, the performances drop.
+In the source file, several commented lines ending with `DEBUG` are included: they may be useful to inspect the program, but beware that, if they are uncommented, the performances drop with large `N`.
 
 
 #### Approach 4
