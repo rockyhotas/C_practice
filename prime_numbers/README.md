@@ -106,7 +106,7 @@ If `n` is not a prime number, the research of a prime divisor must only be perfo
 #### Tests
 
 ```
-` time ./prime_numbers_approach_1 2100000
+$ time ./prime_numbers_approach_1 2100000
 [omitted printed prime numbers]
 
 real    20m29,012s
@@ -118,7 +118,7 @@ The first prime numbers are quickly computed. As the numbers grow, however, the 
 
 
 ```
-` time ./prime_numbers_approach_2 2100000
+$ time ./prime_numbers_approach_2 2100000
 [omitted printed prime numbers]
 
 real    9m15,008s
@@ -130,7 +130,7 @@ The simple improvements of considering only the odd numbers `n > 2` and dividing
 
 
 ```
-` time ./prime_numbers_approach_3 2100000
+$ time ./prime_numbers_approach_3 2100000
 [omitted printed prime numbers]
 
 real    0m58,166s
@@ -141,7 +141,7 @@ sys     0m0,212s
 Other than the improvements in "approach 2", considering only the previous prime numbers for the division has required only `1/10` of the time.
 
 ```
-` time ./prime_numbers_approach_4 2100000
+$ time ./prime_numbers_approach_4 2100000
 [omitted printed prime numbers]
 
 real    0m0,602s
