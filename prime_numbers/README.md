@@ -82,7 +82,7 @@ Create a new item, `added_prime`, for the list of prime numbers. Its `prime` mem
 
     prime_tail->next = added_prime;
 
-Add the newly created item to the prime list, overwriting the `NULL` value of pointer `next` of the `prime_tail` item.
+Add the newly created item to the prime list, overwriting the `NULL` value of pointer `next` of the `prime_tail` item. As already pointed out, the new prime number is added at the tail of the list.
 
     prime_tail = added_prime;
 
@@ -98,9 +98,9 @@ In the source file, several commented lines ending with `DEBUG` are included: th
 #### Approach 4
 If a number `n` is not prime, it is called a [*composite number*](https://en.wikipedia.org/wiki/Composite_number). Assume that a composite number `n` has two (not necessarily different) prime numbers `a, b` different from `n`, with `a, b` between `2` and `n`. It is: `n = a * b`.
 
-If both `a > sqrt(n)`, `b > sqrt(n)` (`sqrt(n)` is the square root of `n`), their product would be `a * b > n`, which is not possible. If `a >= sqrt(n)`, it must necessarily be `b <= sqrt(n)`. In the special case where `a = sqrt(n)`, it must be b = sqrt(n)`, so that `a * b = n`. In all the other cases, when `a * b`, *at least one of them* must be less than `sqrt(n)` ([Reference][prime_sqrt]). Be careful: this only guarantees that, if `a` is different from `b`, `n` must have a prime divisor which is `< sqrt(n)`, but it can also still have a prime divisor which is `> sqrt(n)`.
+If both `a > sqrt(n)`, `b > sqrt(n)` (`sqrt(n)` is the square root of `n`), their product would be `a * b > n`, which is not possible. If `a >= sqrt(n)`, it must necessarily be `b <= sqrt(n)` and vice versa. In the special case where `a = sqrt(n)`, it must be `a = b = sqrt(n)`, so that `a * b = n`. In all the other cases, *at least one* between `a` and `b` must be less than `sqrt(n)` ([Reference][prime_sqrt]). Be careful: this only guarantees that, if `n` is not prime, it must have a prime divisor which is `<= sqrt(n)`, but it can also still have a prime divisor which is `>= sqrt(n)`. This result can be exploited to further reduce the number of divisions to determine if `n` is prime or not.
 
-If `n` is not a prime number, the research of a prime divisor must only be performed till `sqrt(n), because `n` **must** have a prime divisor which is `<= sqrt(n)`. This is an enormous performace improvement for large values of `N`.
+If `n` is not a prime number, the research of a prime divisor must only be performed till `sqrt(n)`: if there is no divisor `<= sqrt(n)`, `n` is prime. This is an enormous performace improvement for large values of `N`.
 
 
 #### Tests
