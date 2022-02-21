@@ -151,7 +151,7 @@ sys     0m0,220s
 
 This is the most significant improvement as regards performance.
 
-If the same test is run several times, according to the conditions of the operating system, it may give slightly different results, but the differences between these 4 different implementations keep being the same.
+If the same test is run several times, according to the conditions of the operating system, it may give slightly different results, but the differences between these 4 implementations keep being the same.
 
 For *small* `N`, till `100000`, all the programs are roughly equivalent. As `N` grows, instead, wide differences appear, with approach 4 giving the best performance.
 
